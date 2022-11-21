@@ -6,7 +6,7 @@
 #    By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 16:48:08 by bda-silv          #+#    #+#              #
-#*   Updated: 2022/11/21 10:36:00 by                  ###   ########.fr       *#
+#*   Updated: 2022/11/21 11:03:59 by                  ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 #
@@ -124,11 +124,11 @@ base: gig
 	cp -Rf ../lib/ lib/ 2>/dev/null
 	echo "$(ora)$(ck)	Creating		gitmirror$(ora)" ; \
 	git remote set-url --add origin git@github.com:bspinheiro/42-$(PROJ).git
-	git remote add github git@github.com:bspinheiro/42-$(PROJ).git
-	echo "$(ora)$(ck)	Creating		init commit$(ora)" ; \
+	gh repo create 42-$(PROJ) --private --source=. --remote=github
+	echo "$(ora)$(ck)	Creating		commit$(ora)" ; \
 	git add .
 	git commit -m "$(PROJ): Initial"
-	git push -u origin master
+	git push origin master
 	echo "$(grn)$(ok)	All set!		$(rst)" ; \
 
 ready:
