@@ -6,11 +6,27 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 18:59:09 by bda-silv          #+#    #+#             */
-/*   Updated: 2022/11/21 19:04:49 by bda-silv         ###   ########.fr       */
+/*   Updated: 2022/11/23 15:14:36 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
+
+/* TODO
+ * 1. Validação
+ * 		- Parametros na String
+ * 		- Parametros fora da String
+ * 		- Parametros Mistos
+ * 		- Trabalhar negativo solto
+ * 		- Error: ""; " "; "-"; "+"; "a";
+ * 2. Struct e Listas duplamente linkadas
+ * 3. Criação dos Movimentos
+ * 4. Algoritimo 
+ * */
+ int check_errors()
+{
+
+}
 
 int	main(int argc, char **argv)
 {
