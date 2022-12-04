@@ -6,7 +6,7 @@
 #    By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 19:30:41 by bda-silv          #+#    #+#              #
-#*   Updated: 2022/11/21 19:30:57 by                  ###   ########.fr       *#
+#*   Updated: 2022/12/03 22:45:50 by                  ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,6 +115,7 @@ gig :
 		echo "*.out" >> .gitignore ; \
 		echo "*.dSYM" >> .gitignore ; \
 		echo ".DS_Store" >> .gitignore ; \
+		echo "replit.nix" >> .gitignore ; \
 		echo "checker_Mac" >> .gitignore ; \
 		echo "push_swap" >> .gitignore ; \
 		cat -n .gitignore ; \
