@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 18:59:09 by bda-silv          #+#    #+#             */
-/*   Updated: 2022/11/23 15:14:36 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/14 21:02:14 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * 		- Parametros Mistos
  * 		- Trabalhar negativo solto
  * 		- Error: ""; " "; "-"; "+"; "a";
- * 2. Struct e Listas duplamente linkadas
+ * 2. Struct e Listas linkadas
  * 3. Criação dos Movimentos
  * 4. Algoritimo 
  * */
