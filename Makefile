@@ -6,7 +6,7 @@
 #    By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 19:30:41 by bda-silv          #+#    #+#              #
-#*   Updated: 2022/11/21 19:30:57 by                  ###   ########.fr       *#
+#*   Updated: 2022/12/03 23:33:58 by                  ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,6 +115,7 @@ gig :
 		echo "*.out" >> .gitignore ; \
 		echo "*.dSYM" >> .gitignore ; \
 		echo ".DS_Store" >> .gitignore ; \
+		echo "replit.nix" >> .gitignore ; \
 		echo "checker_Mac" >> .gitignore ; \
 		echo "push_swap" >> .gitignore ; \
 		cat -n .gitignore ; \
@@ -138,7 +139,7 @@ ready:
 	-mv main.c .main.c 2>/dev/null \
 	&& echo "$(ora)$(ck)	Creating		.main.c" \
 	|| echo "$(red)$(ko)	Skipping		.main.c"
-	$(RM) *.o *.a *.out *.dSYM .DS_Store
+	$(RM) *.o *.a *.out *.dSYM .DS_Store .ccls-cache .replit replit.nix
 	@echo "$(red)$(ko)	Removing		dSYMs$(rst)"
 	-for f in *; do if [ $$f != 'Makefile' ]; then rm $$f 2>/dev/null; fi; done
 	@echo "$(red)$(ko)	Removing		files$(rst)"
