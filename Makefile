@@ -6,7 +6,7 @@
 #    By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 19:30:41 by bda-silv          #+#    #+#              #
-#*   Updated: 2023/02/19 15:19:35 by                  ###   ########.fr       *#
+#*   Updated: 2023/02/19 17:18:57 by                  ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,7 @@ $(LIBS) :
 	$(MAKE) -C $(LIBS_PATH)
 
 $(NAME) : $(OBJS) $(LIBS)
-	-$(CC) $(CFLAGS) $(LIBS) -o $@ $(addprefix $(OBJS_DIR), $@.o)
+	-$(CC) $(CFLAGS) -llibft $(LIBS) -o $@ $(addprefix $(OBJS_DIR), $@.o)
 	@echo "$(grn)$(ok)	Compiled		$@$(rst)"
 
 clean :
