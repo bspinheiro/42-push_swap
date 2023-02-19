@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 19:00:48 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 12:08:41 by bda-silv         ###   ########.fr       */
+/*   Created: 2022/06/10 12:21:37 by bda-silv          #+#    #+#             */
+/*   Updated: 2023/02/10 14:56:58 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include <unistd.h>
-# include "../lib/libft/inc/libft.h"
-
-# define SUCCESS	(0)
-# define FAILURE	(1)
-
-#endif
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	return (ft_strncmp(s1, s2, ft_strlen(s2)));
+}

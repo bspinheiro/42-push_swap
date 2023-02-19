@@ -6,7 +6,7 @@
 #    By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 19:30:41 by bda-silv          #+#    #+#              #
-#*   Updated: 2022/12/03 23:33:58 by                  ###   ########.fr       *#
+#*   Updated: 2023/02/19 15:19:35 by                  ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,9 +30,9 @@ LIBS				=	$(addsuffix $(LIBS_NAME:/=).a, $(LIBS_PATH))
 SRC					=	$(SRCS_NAME:.c=)
 NAME				=	$(SRC)
 
-CC					=	cc
-CFLAGS				=	-Wall -Wextra -Werror -g
-CPPFLAGS			=	-g
+CC					=	gcc
+CFLAGS				=	-Wall -Wextra -Werror -g -fsanitize=address
+CPPFLAGS			=	-fsanitize=address
 
 MD					=	mkdir -p
 AR					=	ar rcs

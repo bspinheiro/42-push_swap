@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 10:37:45 by bda-silv          #+#    #+#             */
-/*   Updated: 2022/11/03 07:04:10 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/10 15:39:21 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int				ft_toupper(int c);
 int				ft_tolower(int c);
 int				ft_atoi(const char *str);
 int				ft_nbrlen(unsigned long long n, unsigned int base);
+int				ft_strcmp(const char *s1, const char *s2);
 size_t			ft_strlen(const char *s);
 size_t			ft_strlcpy(char *dst, const char *src, size_t n);
 size_t			ft_strlcat(char *dst, const char *src, size_t n);
@@ -58,5 +59,6 @@ void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
 void			ft_puts(char *s);
 void			ft_striteri(char *s, void (*f)(unsigned int, char*));
+void			ft_normalize(char **argv);
 
 #endif

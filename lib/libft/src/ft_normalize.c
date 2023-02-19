@@ -1,22 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_normalize.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 19:00:48 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 12:08:41 by bda-silv         ###   ########.fr       */
+/*   Created: 2023/02/10 15:09:43 by bda-silv          #+#    #+#             */
+/*   Updated: 2023/02/10 19:39:05 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include <unistd.h>
-# include "../lib/libft/inc/libft.h"
+/*
+ ** ft_normalize:
+ ** 	Streamline lowercase argv inputs
+*/
 
-# define SUCCESS	(0)
-# define FAILURE	(1)
+void	ft_normalize(char **argv)
+{
+	int	i;
+	int	p;
 
-#endif
+	p = 0;
+	while (argv[++p])
+		;
+	p = p - 1;
+	while (p != 0)
+	{
+		i = 0;
+		while (argv[p][i])
+		{
+			argv[p][i] = ft_tolower(argv[p][i]);
+			i++;
+		}
+		p--;
+	}
+}
