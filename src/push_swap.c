@@ -6,10 +6,11 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:05:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 16:38:16 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/19 17:01:55 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../lib/libft/inc/libft.h"
+#include "../lib/libft/inc/ft_printf.h"
 #include "../inc/push_swap.h"
 
 /* TODO
