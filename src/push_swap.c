@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:05:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 17:01:55 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/20 01:47:43 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../lib/libft/inc/libft.h"
@@ -82,11 +82,11 @@ void	serialize(int argc, char **argv)
 		trimmed = trim(argv[i]);
 		ft_printf("%s\n", trimmed);
 		if (!joined)
-			joined = ft_strjoin(trimmed, "");
+			joined = ft_strjoinfree(trimmed, "");
 		else
 		{
-			joined = ft_strjoin(joined, " ");
-			joined = ft_strjoin(joined, trimmed);
+			joined = ft_strjoinfree(joined, " ");
+			joined = ft_strjoinfree(joined, trimmed);
 			memfree(trimmed);
 		}
 		ft_printf("%s\n", joined);
