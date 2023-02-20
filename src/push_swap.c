@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:05:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/02/20 01:47:43 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/20 01:52:09 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../lib/libft/inc/libft.h"
@@ -53,18 +53,15 @@ char	*ft_strjoinfree(char *s1, char *s2)
 
 void	memfree(void *ptr)
 {
-	ft_printf("ADR: %p (heap)\n", ptr);
 	if (ptr == NULL)
 		return ;
 	free(ptr);
 	ptr = NULL;
-	ft_printf("ADR: %p (free)\n\n", ptr);
 	return ;
 }
 
 char	*trim(char *str)
 {
-	ft_printf("%s\n", str);
 	str = ft_strtrim(str, " ");
 	return (str);
 }
@@ -89,9 +86,10 @@ void	serialize(int argc, char **argv)
 			joined = ft_strjoinfree(joined, trimmed);
 			memfree(trimmed);
 		}
-		ft_printf("%s\n", joined);
 		i++;
 	}
+	ft_printf("%s\n", joined);
+	memfree(joined);
 	exit(SUCCESS);
 }
 
