@@ -5,41 +5,102 @@
 #                                                     +:+ +:+         +:+      #
 #    By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/11/21 19:30:41 by bda-silv          #+#    #+#              #
-#*   Updated: 2023/02/20 01:32:53 by                  ###   ########.fr       *#
+#    Created: 2023/02/10 18:24:14 by bda-silv          #+#    #+#              #
+#*   Updated: 2023/02/20 01:42:42 by                  ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
-#.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*. SPECS .*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.
+PROJ      := push_swap
+NAMES     := ${PROJ}
 
-PROJ				=	push_swap
+# **************************************************************************** #
+#                          Config and Folders
+# **************************************************************************** #
 
-SRCS_DIR			=	./src/
-OBJS_DIR			=	./obj/
-INCS_DIR			=	./inc/
-LIBS_DIR			=	./lib/
+SRC_ROOT  := src/
+INC_ROOT  := inc/
+LIB_ROOT  := lib/
+OBJ_ROOT  := obj/
+BIN_ROOT  := ./
 
-#.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*. SETUP .*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.
+VERBOSE   := 1
 
-LIBS_NAME			=	$(shell cd $(LIBS_DIR); ls -d */)
-LIBS_PATH			=	$(addprefix $(LIBS_DIR), $(LIBS_NAME))
-SRCS_NAME			=	$(shell ls $(SRCS_DIR) | grep -E ".+\.c")
-SRCS				=	$(addprefix $(SRCS_DIR), $(SRCS_NAME))
-OBJS				=	$(addprefix $(OBJS_DIR), $(SRCS_NAME:.c=.o))
-LIBS				=	$(addsuffix $(LIBS_NAME:/=).a, $(LIBS_PATH))
-SRC					=	$(SRCS_NAME:.c=)
-NAME				=	$(SRC)
+# Verbose levels
+# 0: Make will be totaly silenced
+# 1: Make will print echos and printf
+# 2: Make will not be silenced but target commands will not be printed
+# 3: Make will print each command
+# 4: Make will print all debug info
+#
+# If no value is specified or an incorrect value is given make will print only
+# echoes like if VERBOSE was set to 1.
 
-CC					=	gcc
-CFLAGS				=	-Wall -Wextra -Werror -g -fsanitize=address
-CPPFLAGS			=	-fsanitize=address
+# **************************************************************************** #
+#                          Compiler and Flags
+# **************************************************************************** #
 
-MD					=	mkdir -p
-AR					=	ar rcs
-RL					=	ranlib
-RM					=	rm -rf
+CC        := cc
+CLIB      := ar -rc
 
-#.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*. ROUTE .*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.
+CFLAGS    := -Wall -Wextra -Werror
+DFLAGS    := -g
+OFLAGS    := -O3
+FSANITIZE := -fsanitize=address
+
+# **************************************************************************** #
+#                           Content Folders
+# **************************************************************************** #
+
+SRC_DIRS_LIST := ${SRC_ROOT}
+SRC_DIRS_LIST := $(foreach dl,${SRC_DIRS_LIST},$(subst :,:${SRC_ROOT},${dl}))
+
+SRC_DIRS = $(subst :,${SPACE},${SRC_DIRS_LIST})
+OBJ_DIRS = $(subst ${SRC_ROOT},${OBJ_ROOT},${SRC_DIRS})
+
+INC_DIRS = ${INC_ROOT}
+
+# **************************************************************************** #
+#                                Files
+# **************************************************************************** #
+
+SRCS_LIST = $(foreach dl,${SRC_DIRS_LIST},$(subst ${SPACE},:,$(strip $(foreach\
+	dir,$(subst :,${SPACE},${dl}),$(wildcard ${dir}*.c)))))
+OBJS_LIST = $(subst ${SRC_ROOT},${OBJ_ROOT},$(subst .c,.o,${SRCS_LIST}))
+
+SRCS = $(foreach dir,${SRC_DIRS},$(wildcard ${dir}*.c))
+OBJS = $(subst ${SRC_ROOT},${OBJ_ROOT},${SRCS:.c=.o})
+
+INCS := ${addprefix -I,${INC_DIRS}}
+INCS += -I${LIB_ROOT}libft
+
+# **************************************************************************** #
+#                               VPATHS
+# **************************************************************************** #
+
+vpath %.o ${OBJ_ROOT}
+vpath %.h ${INC_ROOT}
+vpath %.c ${SRC_DIRS}
+
+# **************************************************************************** #
+#                             OS Check
+# **************************************************************************** #
+
+detected_OS := $(shell uname)
+
+ifeq ($(detected_OS), Linux)
+	MLX = mlx_linux
+	MLX_FLAGS = -lbsd -L${LIB_ROOT}${MLX} -lmlx -lXext -lX11 -lm
+	CFLAGS += -DOS=1
+else ifeq ($(detected_OS), Darwin)
+	MLX = mlx_darwin
+	MLX_FLAGS = -I${LIB_ROOT}${MLX} -L${LIB_ROOT}${MLX} -lm -lmlx -framework \
+				OpenGL -framework AppKit
+	CFLAGS += -DOS=2
+endif
+
+# **************************************************************************** #
+#                          Command Line Parser
+# **************************************************************************** #
 
 ifeq (run,$(firstword $(MAKECMDGOALS)))
   RUN_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
@@ -57,47 +118,57 @@ ifndef FLDR
  FLDR = $(shell echo $(PWD) | rev | cut -d'/' -f1 | rev)
 endif
 
-#.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*. RULES .*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.
+# **************************************************************************** #
+#                         Mandatory Targets
+# **************************************************************************** #
 
-all : $(OBJS_DIR) $(LIBS) $(NAME)
+.PHONY: all
+all: ${NAMES}
 
-$(OBJS_DIR) :
-	$(MD) $(OBJS_DIR)
+${PROJ}: ${OBJS}
+	${AT} ${MAKE} -C ${LIB_ROOT}libft ${BLOCK}
+	#${AT} ${MAKE} -C ${LIB_ROOT}${MLX} ${BLOCK}
+	${AT} ${CC} ${CFLAGS} ${OFLAGS} ${INCS}  ${OBJS}  \
+		${LIB_ROOT}libft/libft.a -o $@ ${BLOCK}
+	${AT}echo "${_OK}$(grn)${@F}$(rst)" ${BLOCK}
 
-$(OBJS_DIR)%.o : $(SRCS_DIR)%.c
-	@echo "$(ora)$(ck)	Creating		$@$(rst)"
-	$(CC) $(CFLAGS) -I$(INCS_DIR) -o $@ -c $<
+# **************************************************************************** #
+#                         Clean Targets
+# **************************************************************************** #
+.PHONY: clean
+clean:
+	${AT}mkdir -p ${OBJ_ROOT} ${BLOCK}
+	${AT}rm -rf  ${OBJ_ROOT}  ${BLOCK}
+	${AT} ${MAKE} clean -C ${LIB_ROOT}libft ${BLOCK}
+#	${AT} ${MAKE} clean -C ${LIB_ROOT}${MLX} ${BLOCK}
+#	${AT}rm -f libmlx.dylib ${BLOCK}
+	${AT}echo "$(_KO)$(red)${OBJ_ROOT}$(rst)" ${BLOCK}
 
-$(LIBS) :
-	$(MAKE) -C $(LIBS_PATH)
+.PHONY: fclean
+fclean: clean
+	${AT} ${MAKE} fclean -C ${LIB_ROOT}libft ${BLOCK}
+#	${AT} ${MAKE} fclean -C ${LIB_ROOT}${MLX} ${BLOCK}
+	${AT}rm -rf ${NAMES} ${BLOCK}
+	${AT}echo "$(_KO)$(red)${NAMES}$(rst)" ${BLOCK}
 
-$(NAME) : $(OBJS) $(LIBS)
-	-$(CC) $(CFLAGS) -L./lib/libft -lft -o $@ $(addprefix $(OBJS_DIR), $@.o)
-	@echo "$(grn)$(ok)	Compiled		$@$(rst)"
+.PHONY: re
+re: fclean all
 
-clean :
-	$(MAKE) $@ -C $(LIBS_PATH)
-	$(RM) $(OBJS_DIR)
-	@echo "$(red)$(ko)	Removing		$(OBJS_DIR)$(rst)"
+# **************************************************************************** #
+#         Debug,  Run, Leaks, Ready,  gitIgnore, Boilerplate and Help
+# **************************************************************************** #
 
-fclean :
-	$(MAKE) $@ -C $(LIBS_PATH)
-	$(RM) $(SRC) $(OBJS_DIR)
-	@echo "$(red)$(ko)	Removing		$(SRC)$(rst)"
+debug: CFLAGS += ${DFLAGS} ${FSANITIZE}
+debug:
+	@echo "$(pnk)"
+	lldb $(RUN_ARGS)
 
-re : fclean all
+help:
 
-norm :
-	@echo "$(pnk)\c"; \
-	norminette | grep "Error" || echo "$(grn)$(ok)	Norminette		OK!"
 
 run : all
 	@echo "$(grn)$(ok)	Running			$(RUN_ARGS)$(rst)\n"
 	./$(RUN_ARGS); echo "$(rst)"
-
-debug :
-	@echo "$(pnk)"
-	lldb $(RUN_ARGS)
 
 leaks :
 	valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes \
@@ -115,9 +186,6 @@ gig :
 		echo "*.out" >> .gitignore ; \
 		echo "*.dSYM" >> .gitignore ; \
 		echo ".DS_Store" >> .gitignore ; \
-		echo "replit.nix" >> .gitignore ; \
-		echo "checker_Mac" >> .gitignore ; \
-		echo "push_swap" >> .gitignore ; \
 		cat -n .gitignore ; \
 	fi
 
@@ -139,7 +207,7 @@ ready:
 	-mv main.c .main.c 2>/dev/null \
 	&& echo "$(ora)$(ck)	Creating		.main.c" \
 	|| echo "$(red)$(ko)	Skipping		.main.c"
-	$(RM) *.o *.a *.out *.dSYM .DS_Store .ccls-cache .replit replit.nix
+	$(RM) *.o *.a *.out *.dSYM .DS_Store
 	@echo "$(red)$(ko)	Removing		dSYMs$(rst)"
 	-for f in *; do if [ $$f != 'Makefile' ]; then rm $$f 2>/dev/null; fi; done
 	@echo "$(red)$(ko)	Removing		files$(rst)"
@@ -148,23 +216,61 @@ ready:
 rainbow :
 	@echo "$(red)R$(grn)A$(yel)I$(blu)N$(pnk)B$(cya)O$(wht)W$(rst)"
 
-.PHONY : all clean fclean re norm gig run debug leaks ready rainbow boilerplate
+.PHONY : gig run debug leaks ready rainbow boilerplate
 
-#.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*. VERBOSE .*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.
 
-ifdef VERBOSE
- MAKEFLAGS += --debug
+# **************************************************************************** #
+#                           Norminette
+# **************************************************************************** #
+
+.PHONY: norm
+norm:
+	${AT} echo "$(pnk)\c"; \
+	norminette ${SRCS} ${INC_ROOT} | grep "Error" || \
+	echo "$(grn)$(ok)	Norminette		OK!" ${BLOCK}
+
+# **************************************************************************** #
+#                        Target Templates
+# **************************************************************************** #
+
+define make_obj
+${1} : ${2}
+	$${AT}mkdir -p $${@D} $${BLOCK}
+	$${AT} $${CC} $${OFLAGS} $${CFLAGS} $${INCS} -I$${LIB_ROOT}$${MLX} \
+		-c $$< -o $$@ $${BLOCK}
+endef
+
+# **************************************************************************** #
+#                        Target Generator
+# **************************************************************************** #
+
+$(foreach src,${SRCS},$(eval\
+$(call make_obj,$(subst ${SRC_ROOT},${OBJ_ROOT},${src:.c=.o}),${src})))
+
+# **************************************************************************** #
+#                          Verbose Check
+# **************************************************************************** #
+
+ifeq (${VERBOSE}, 0)
+	MAKEFLAGS += --silent
+	BLOCK := >/dev/null
+else ifeq (${VERBOSE}, 1)
+	MAKEFLAGS += --silent
+	AT := @
+else ifeq (${VERBOSE}, 2)
+	AT := @
+else ifeq (${VERBOSE}, 4)
+	MAKEFLAGS += --debug=v
 endif
 
-ifndef VERBOSE
- MAKEFLAGS += --silent
-.SILENT:
-endif
+# **************************************************************************** #
+#                           Visuals and Messages
+# **************************************************************************** #
 
-#.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*. VISUALS .*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.
 ok:=✓
 ko:=✗
 ck:=・
+ls:=*
 s:=\033[0
 red:=$s31m
 grn:=$s32m
@@ -175,4 +281,9 @@ cya:=$s36m
 wht:=$s37m
 rst:=$s00m
 ora:=$s38;2;255;153;0m
-#.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.
+
+_OK := $(grn)$(ok)	Compiled		$(rst)
+_CK := $(ora)$(ck)	Creating		$(rst)
+_KO := $(red)$(ko)	Removing		$(rst)
+
+# **************************************************************************** #
