@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:00:48 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 12:08:41 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/21 16:12:05 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,20 @@
 
 # define SUCCESS	(0)
 # define FAILURE	(1)
+
+
+/* MODEL  */
+
+/* CONTROLLER */
+
+/* VIEW */
+
+/* ROUTER */
+char	*serialize(char **argv);
+
+/* UTILS */
+char	*ft_strjoinfree(char *s1, char *s2);
+void	memfree(void *ptr);
+
 
 #endif

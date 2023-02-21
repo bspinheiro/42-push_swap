@@ -6,11 +6,10 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:05:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/02/20 01:52:09 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/21 17:35:44 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../lib/libft/inc/libft.h"
-#include "../lib/libft/inc/ft_printf.h"
+
 #include "../inc/push_swap.h"
 
 /* TODO
@@ -27,76 +26,80 @@
  *
  *
  * */
-char	*ft_strjoinfree(char *s1, char *s2)
+static int	ft_wordcount(char const *s, char c)
 {
-	size_t	l1;
-	size_t	l2;
-	char	*str;
+	int	wc;
 
-	if (!s1 && !s2)
-		return (NULL);
-	l1 = ft_strlen(s1);
-	l2 = ft_strlen(s2);
-	str = malloc(sizeof(char) * (l1 + l2 + 1));
-	if (!str)
-		return (NULL);
-	ft_memcpy(str, s1, l1);
-	ft_memcpy(str + l1, s2, l2);
-	str[l1 + l2] = '\0';
-	if (s1)
+	wc = 0;
+	while (s && *s)
 	{
-		free(s1);
-		s1 = NULL;
+		while (*s == c)
+			s++;
+		if (*s)
+			wc++;
+		s = ft_strchr(s, c);
 	}
-	return (str);
+	return (wc);
 }
 
-void	memfree(void *ptr)
+static char	*ft_wordcopy(char const *s, char c, char **strs)
 {
-	if (ptr == NULL)
-		return ;
-	free(ptr);
-	ptr = NULL;
-	return ;
-}
+	char	*next;
 
-char	*trim(char *str)
-{
-	str = ft_strtrim(str, " ");
-	return (str);
-}
-
-void	serialize(int argc, char **argv)
-{
-	int		i;
-	char	*trimmed;
-	char	*joined;
-
-	joined =  NULL;
-	i = 1;
-	while (i != argc)
+	next = ft_strchr(s, c);
+	if (!next || !c)
 	{
-		trimmed = trim(argv[i]);
-		ft_printf("%s\n", trimmed);
-		if (!joined)
-			joined = ft_strjoinfree(trimmed, "");
-		else
-		{
-			joined = ft_strjoinfree(joined, " ");
-			joined = ft_strjoinfree(joined, trimmed);
-			memfree(trimmed);
-		}
-		i++;
+		next = (char *)s;
+		while (*next)
+			next++;
 	}
-	ft_printf("%s\n", joined);
-	memfree(joined);
-	exit(SUCCESS);
+	*strs = ft_substr(s, 0, next - s);
+	return (next);
 }
 
+char	**ft_splitt(char const *s, char c)
+{
+	char	**strs;
+	char	**buf;
+
+	if (!s)
+		return (NULL);
+	strs = (char **)malloc((ft_wordcount(s, c) + 1) * sizeof(*strs));
+	if (!strs)
+		return (NULL);
+	buf = strs;
+	while (*s)
+	{
+		while (*s == c)
+			s++;
+		if (*s)
+			s = ft_wordcopy(s, c, strs++);
+	}
+	*strs = 0;
+	return (buf);
+}
 int	main(int argc, char **argv)
 {
+	char	*args;
+	char	**params;
+	int		i
+		;
+
+	i = 0;
 	if (argc > 1)
-		serialize(argc, argv);
+	{
+		args = serialize(argv);
+		ft_printf("%s\n", args);
+		ft_printf("%i\n", ft_wordcount(args, ' '));
+		params = ft_split(args, ' ');
+		while (i < ft_wordcount(args, ' '))
+		{			
+			ft_printf("%s\n", params[i]);
+			i++;
+		}
+		memfree(args);
+		free(params);
+	}
 	else
 		ft_printf("\n");
 	return (0);
