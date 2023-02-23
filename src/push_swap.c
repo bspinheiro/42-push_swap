@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:05:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/02/23 15:10:20 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/23 15:24:51 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,18 @@
 static char **p_check(char **pp)
 {
 	int i = 0;
+	char *s1;
+	char *s2;
 
 	while(pp[++i])
 		;
+	*s1 = pp[0][0];
+	*s2 = *pp[0];
 	ft_printf("**pp    %p\n", pp);
 	ft_printf("**pp[0] %p\n", &pp[0]);
 	ft_printf("**pp[0][0] %p\n", &pp[0][0]);
 	ft_printf("**pp[0] %x\n", pp[0]);
+	ft_printf("**diff %i\n", s2 - s1);
 	return (0);
 }
 
