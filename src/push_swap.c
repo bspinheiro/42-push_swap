@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:05:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/02/23 03:06:51 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/23 03:09:10 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static char	**free_all(char **pp)
 	{
 		free(pp[i]);
 		pp[i] = (void *) 0;
+		i++;
 	}
 	free (pp);
 	pp = (void *) 0;
