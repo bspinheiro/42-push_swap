@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:05:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/02/23 14:23:58 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/23 14:24:58 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
  *
  *
  * */
-static char *p_check(char *pp)
+static char **p_check(char **pp)
 {
 	size_t i = 0;
 
