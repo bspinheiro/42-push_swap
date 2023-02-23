@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:05:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/02/23 02:18:31 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/23 02:35:11 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ static char	**free_all(char **pp, size_t i)
 }
 
 
-int	main()
+/*int	main()
 {
 	char	s1 = 'a';
 	char	s2[] = "";
@@ -131,9 +131,9 @@ int	main()
 	}
 	free(pp);
 	return (0);
-}
+}*/
 
-/*static int	ft_wordcount(char const *s, char c)
+static int	ft_wordcount(char const *s, char c)
 {
 	int	wc;
 
@@ -153,18 +153,21 @@ int	main(int argc, char **argv)
 {
 	char	*args;
 	char	**params;
+	int		wc;
 	int		i;
 
 	i = 0;
 	if (argc > 1)
 	{
 		args = serialize(argv);
+		wc = ft_wordcount(args, ' ');
 		ft_printf("%s\n", args);
-		ft_printf("%i\n", ft_wordcount(args, ' '));
-		params = ft_splitt(args, ' ');
-		while (i < ft_wordcount(args, ' '))
+		ft_printf("%i\n", wc);
+		params = ft_split(args, ' ');
+		while (i < wc)
 		{
 			ft_printf("%s\n", params[i]);
+			free(params[i]);
 			i++;
 		}
 		memfree(args);
@@ -173,7 +176,7 @@ int	main(int argc, char **argv)
 	else
 		ft_printf("\n");
 	return (0);
-}*/
+}
 
 /*static int	ft_wordcount(char const *s, char c)
 {
