@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:05:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/02/23 16:01:52 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/23 16:24:21 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
  * */
 int	p_check(char **pp)
 {
+	char *p1 = &pp[0][0];
+	char *p2 = pp[0];
+
 	int s1 = ft_printf("%p", &pp[0][0]);
 	int s2 = ft_printf("%x", pp[0]);
 
@@ -32,9 +35,9 @@ int	p_check(char **pp)
 	//ft_printf("**pp[0] %p\n", &pp[0]);
 	//ft_printf("**pp[0][0] %p\n", &pp[0][0]);
 	//ft_printf("**pp[0] %x\n", pp[0]);
-	//ft_printf("**s1 %i\n", s1);
-	ft_printf("**diff %i\n", s1 - s2);
-	return (s1 - s2);
+	ft_printf("**p1 %lu\n", p1);
+	ft_printf("**p2 %i\n", p2);
+	return (0);
 }
 
 static char	**free_all(char **pp)
