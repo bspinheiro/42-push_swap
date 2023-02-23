@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:05:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/02/23 01:43:48 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/23 01:46:58 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,10 @@ int	main()
 	char s3[] = "sdfsadfasdf";
 	pp = ft_splitt(s3, s1);
 	for(int i = 0; i < (int)cnt_word(s3, s1);i++)
+	{
 		printf("ft   : %s\n", pp[i]);
-	free(pp);
+		free(pp[i]);
+	}
 	return (0);
 }
 
