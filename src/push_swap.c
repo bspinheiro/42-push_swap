@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:05:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/02/23 14:12:59 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/23 14:23:58 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,12 @@
  *
  *
  * */
-static char **p_check(char **pp)
+static char *p_check(char *pp)
 {
 	size_t i = 0;
-	size_t n = 0;
 
-	while(pp[++n])
-		;
-	ft_printf("==> n=%i\n", n);
 	ft_printf("**pp    %p\n", pp);
-	while (i != n)
-	{
-		ft_printf("** %p\n", i, &pp[i]);
-		i++;
-	}
+	ft_printf("**pp[0] %p\n", pp[0]);
 	return (0);
 }
 
@@ -103,7 +95,7 @@ int	main(int argc, char **argv)
 			ft_printf("%s\n", params[i]);
 			i++;
 		}
-		free_all((void *)args);
+		memfree((void *)args);
 		free_all(params);
 	}
 	else
