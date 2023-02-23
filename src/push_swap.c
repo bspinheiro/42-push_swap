@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:05:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/02/23 12:17:25 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/23 13:05:25 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /* TODO
  * 1. Validação
- * 		- Trabalhar negativo solto
+ * 		- Trabalhar negativo solt
  * 		- Error: ""; " "; "-"; "+"; "a"; "int max", "int min", zero, -0, +0,
  * 		no double number;
  * 2. Struct e Listas linkadas
@@ -33,20 +33,21 @@ static char	**free_all(char **pp)
 	n = 0;
 	if (pp == NULL)
 		return(0);
-	ft_printf("*** ftstrlen %i\n", ft_strlen((void *)pp));
 	while (pp[++n])
 		;
 	while (n != 0 && i != n)
 	{
-		if (pp[i])
-		{
-			free(pp[i]);
-			pp[i] = (void *) 0;	
-		}
+		if (pp[i] == NULL)
+			break;
+		free(pp[i]);
+		pp[i] = (void *) 0;	
 		i++;
 	}
-	free (pp);
-	pp = (void *) 0;
+	if (pp != NULL)
+	{
+		free (pp);
+		pp = (void *) 0;
+	}
 	return (0);
 }
 
