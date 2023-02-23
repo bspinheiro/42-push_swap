@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:05:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/02/23 11:48:02 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/23 12:10:48 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ static char	**free_all(char **pp)
 	n = 0;
 	if (pp == NULL)
 		return(0);
+	ft_printf("*** ftstrlen %i\n", ft_strlen((void *)pp));
 	while (pp[++n])
 		;
-	ft_printf(" n = %i\n", n);
 	while (n != 0 && i != n)
 	{
 		free(pp[i]);
