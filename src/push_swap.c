@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:05:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/02/23 03:09:10 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/23 03:17:27 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char	**free_all(char **pp)
 	while (pp[++n])
 		;
 	n = n - 1;
-	while (i < n)
+	while (i != n)
 	{
 		free(pp[i]);
 		pp[i] = (void *) 0;
@@ -76,7 +76,7 @@ int	main(int argc, char **argv)
 		args = serialize(argv);
 		wc = ft_wordcount(args, ' ');
 		ft_printf("%s\n", args);
-		ft_printf("%i\n", wc);
+		ft_printf("%i allocations\n", wc);
 		params = ft_split(args, ' ');
 		while (i < wc)
 		{
