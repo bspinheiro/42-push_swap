@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:05:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/02/23 00:16:26 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/23 01:24:22 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ static char	**free_all(char **pp, size_t i)
 }
 
 
-/*int	main()
+int	main()
 {
 	char	s1 = 'a';
 	char	s2[] = "";
@@ -123,10 +123,11 @@ static char	**free_all(char **pp, size_t i)
 	pp = ft_split(s3, s1);
 	for(int i = 0; i < (int)cnt_word(s3, s1);i++)
 		printf("ft   : %s\n", pp[i]);
+	free(pp);
 	return (0);
-}*/
+}
 
-static int	ft_wordcount(char const *s, char c)
+/*static int	ft_wordcount(char const *s, char c)
 {
 	int	wc;
 
@@ -141,7 +142,6 @@ static int	ft_wordcount(char const *s, char c)
 	}
 	return (wc);
 }
-
 
 int	main(int argc, char **argv)
 {
@@ -167,7 +167,7 @@ int	main(int argc, char **argv)
 	else
 		ft_printf("\n");
 	return (0);
-}
+}*/
 
 /*static int	ft_wordcount(char const *s, char c)
 {
