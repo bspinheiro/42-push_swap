@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:05:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/02/23 14:32:48 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/23 14:33:23 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
  * */
 static char **p_check(char **pp)
 {
-	ft_printf("**pp    %p\n", &pp);
+	ft_printf("**pp    %p\n", pp);
 	ft_printf("**pp[0] %p\n", &pp[0]);
 	return (0);
 }
