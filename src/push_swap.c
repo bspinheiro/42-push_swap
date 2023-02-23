@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:05:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/02/23 15:24:51 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/23 15:26:40 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,11 @@
 static char **p_check(char **pp)
 {
 	int i = 0;
-	char *s1;
-	char *s2;
+	char *s1 = &pp[0][0];
+	char *s2 = pp[0];
 
 	while(pp[++i])
 		;
-	*s1 = pp[0][0];
-	*s2 = *pp[0];
 	ft_printf("**pp    %p\n", pp);
 	ft_printf("**pp[0] %p\n", &pp[0]);
 	ft_printf("**pp[0][0] %p\n", &pp[0][0]);
