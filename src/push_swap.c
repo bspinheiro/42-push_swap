@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:05:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/02/23 14:25:27 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/23 14:26:16 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	main(int argc, char **argv)
 			ft_printf("%s\n", params[i]);
 			i++;
 		}
-		memfree((void *)args);
+		free_all((void *)args);
 		free_all(params);
 	}
 	else
