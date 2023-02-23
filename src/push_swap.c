@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:05:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/02/23 13:05:25 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/23 13:08:30 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,10 @@ static char	**free_all(char **pp)
 		return(0);
 	while (pp[++n])
 		;
-	while (n != 0 && i != n)
+	while (n != 0 && i != n && pp[i] != NULL)
 	{
-		if (pp[i] == NULL)
-			break;
 		free(pp[i]);
-		pp[i] = (void *) 0;	
+		pp[i] = (void *) 0;
 		i++;
 	}
 	if (pp != NULL)
