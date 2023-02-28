@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:49:36 by                   #+#    #+#             */
-/*   Updated: 2023/02/21 16:15:55 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/27 09:27:32 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*serialize( char **argv)
 	char	*trimmed;
 	char	*joined;
 
-	joined =  NULL;
+	joined = NULL;
 	args = 0;
 	i = 1;
 	while (argv[++args])
@@ -33,11 +33,9 @@ char	*serialize( char **argv)
 		{
 			joined = ft_strjoinfree(joined, " ");
 			joined = ft_strjoinfree(joined, trimmed);
-			memfree(trimmed);
+			free1d(trimmed);
 		}
 		i++;
 	}
-	return(joined);
+	return (joined);
 }
-
-

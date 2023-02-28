@@ -6,12 +6,11 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:53:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/02/21 15:54:57 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/27 11:00:32 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
-
 
 char	*ft_strjoinfree(char *s1, char *s2)
 {
@@ -37,13 +36,49 @@ char	*ft_strjoinfree(char *s1, char *s2)
 	return (str);
 }
 
-void	memfree(void *ptr)
+char	**free1d(char *ptr)
 {
 	if (ptr == NULL)
-		return ;
+		return (0);
 	free(ptr);
 	ptr = NULL;
-	return ;
+	return (0);
 }
 
+char	**free2d(char **pp)
+{
+	size_t	i;
+	size_t	n;
 
+	i = 0;
+	n = 0;
+	if (pp == NULL)
+		return (0);
+	while (pp[++n])
+		;
+	while (i != n)
+	{
+		free(pp[i]);
+		pp[i] = (void *) 0;
+		i++;
+	}
+	free (pp);
+	pp = (void *) 0;
+	return (0);
+}
+
+int	ft_wordcount(char const *s, char c)
+{
+	int	wc;
+
+	wc = 0;
+	while (s && *s)
+	{
+		while (*s == c)
+			s++;
+		if (*s)
+			wc++;
+		s = ft_strchr(s, c);
+	}
+	return (wc);
+}
