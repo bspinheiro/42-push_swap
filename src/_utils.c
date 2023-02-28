@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:53:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/02/27 11:00:32 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/28 17:44:38 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,24 @@ int	ft_wordcount(char const *s, char c)
 		s = ft_strchr(s, c);
 	}
 	return (wc);
+}
+
+int	ft_atol(const char *str)
+{
+	int		i;
+	long	signal;
+	long	number;
+
+	i = 0;
+	while (ft_isspace(str[i]))
+		i++;
+	signal = 1;
+	if (str[i] == '-')
+		signal = -1;
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	number = 0;
+	while (ft_isdigit((int)str[i]))
+		number = (number * 10) + (str[i++] - '0');
+	return ((long)(number * signal));
 }
