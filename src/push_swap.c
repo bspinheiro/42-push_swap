@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:05:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/03/05 02:17:56 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/05 12:46:32 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,34 @@
  *  - main, validate
  *  - unica free;
  * */
-void free_double_ptr(char **pptr) {
-    if (pptr == NULL) {
+char **free_double_ptr(char **pp) {
+   	size_t	i;
+	size_t	n;
+
+	i = 0;
+	n = 0;
+	if (pp == NULL)
+		return (0);
+	if (*pp == NULL)
+	{
+		free(pp);
+		pp = NULL;
+		return (0);
+	}
+	while (pp[++n])
+		;
+	while (i != n)
+	{
+		free(pp[i]);
+		pp[i] = (void *) 0;
+		i++;
+	}
+	free (pp);
+	pp = (void *) 0;
+	return (0);
+}
+/* 
+if (pptr == NULL) {
         return;
     }
     if (*pptr == NULL) {
@@ -36,7 +62,7 @@ void free_double_ptr(char **pptr) {
     free(pptr);
     pptr = NULL;
 }
-
+*/
 
 int	main(int argc, char **argv)
 {
