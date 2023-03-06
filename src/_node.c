@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 20:20:30 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/03/02 20:24:16 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/05 21:33:06 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,13 @@ int	del_node_on_top(t_stack *stack)
 	}
 	else
 		return (FAILURE);
+}
+
+int	set_index(t_node *current, int index)
+{
+	if (current != NULL)
+		current->index = index;
+	else
+		return (FAILURE);
+	return (SUCCESS);
 }

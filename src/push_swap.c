@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:05:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/03/05 12:46:32 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/06 00:22:02 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,47 +22,6 @@
  *  - main, validate
  *  - unica free;
  * */
-char **free_double_ptr(char **pp) {
-   	size_t	i;
-	size_t	n;
-
-	i = 0;
-	n = 0;
-	if (pp == NULL)
-		return (0);
-	if (*pp == NULL)
-	{
-		free(pp);
-		pp = NULL;
-		return (0);
-	}
-	while (pp[++n])
-		;
-	while (i != n)
-	{
-		free(pp[i]);
-		pp[i] = (void *) 0;
-		i++;
-	}
-	free (pp);
-	pp = (void *) 0;
-	return (0);
-}
-/* 
-if (pptr == NULL) {
-        return;
-    }
-    if (*pptr == NULL) {
-        free(pptr);
-        pptr = NULL;
-        return;
-    }
-    free(*pptr);
-    *pptr = NULL;
-    free(pptr);
-    pptr = NULL;
-}
-*/
 
 int	main(int argc, char **argv)
 {
@@ -84,13 +43,16 @@ int	main(int argc, char **argv)
 			init_stack(a);
 			while (i != array_size(params))
 				add_node_on_bottom(a, atol(params[i++]));
+			init_index(a);
+			show_stack(a);
+			sort_index(a);
 			show_stack(a);
 			kill_stack(a);
 		}
 		else
 			ft_printf("Error!\n");
-		free_double_ptr((char **)args);
-		free_double_ptr(params);
+		free1d(args);
+		free2d(params);
 	}
 	else
 		ft_printf("\n");
