@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:00:48 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/03/06 00:26:30 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/06 18:23:17 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,29 @@ typedef struct s_stack{
 	struct s_node	*head;
 	struct s_node	*tail;
 	int				size;
+	char			name;
 }	t_stack;
 
-/* MODEL  */
+/* MOVES  */
+int		s(t_stack *stack);
+int		r(t_stack *stack);
+int		rr(t_stack *stack);
+int		p(t_stack *send, t_stack *recv);
 
-/* STACK */
-void	init_stack(t_stack *stack);
-void	show_stack(t_stack *stack);
-void	kill_stack(t_stack *stack);
+	/* INDEX  */
 void	init_index(t_stack *stack);
 void	sort_index(t_stack *stack);
 t_node	*least_value(t_stack *stack);
 
+/* STACK */
+void	init_stack(t_stack *stack, char c);
+void	show_stack(t_stack *stack);
+void	kill_stack(t_stack *stack);
+
 /* NODE */
-int		add_node_on_top(t_stack *stack, int value);
+int		add_node_on_top(t_stack *stack, int value, int index);
 int		add_node_on_bottom(t_stack *stack, int value);
 int		del_node_on_top(t_stack *stack);
-int		set_index(t_node *current, int index);
 
 /* PARSING */
 char	*serialize(char **argv);

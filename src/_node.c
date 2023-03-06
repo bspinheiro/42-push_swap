@@ -6,14 +6,13 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 20:20:30 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/03/05 21:33:06 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/06 18:27:00 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../inc/push_swap.h"
 
-int	add_node_on_top(t_stack *stack, int value)
+int	add_node_on_top(t_stack *stack, int value, int index)
 {
 	t_node	*new;
 
@@ -21,6 +20,7 @@ int	add_node_on_top(t_stack *stack, int value)
 	if (new == NULL)
 		return (FAILURE);
 	new->value = value;
+	new->index = index;
 	if (stack->head == NULL)
 	{
 		new->next = NULL;
@@ -75,13 +75,4 @@ int	del_node_on_top(t_stack *stack)
 	}
 	else
 		return (FAILURE);
-}
-
-int	set_index(t_node *current, int index)
-{
-	if (current != NULL)
-		current->index = index;
-	else
-		return (FAILURE);
-	return (SUCCESS);
 }

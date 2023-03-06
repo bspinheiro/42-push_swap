@@ -6,21 +6,20 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:05:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/03/06 00:22:02 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/06 19:04:37 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
 /* TODO
- * 2. Struct e Listas linkadas
- *  - funcao pegar o menor valor e setar como indice 1++; se indice <> 0
  * 3. Criação dos Movimentos
  * 4. Algoritimo
  * 
  * * REFACTOR:
- *  - main, validate
- *  - unica free;
+ * 	- validacao -10 -11 ;
+ *  - main mais concisa, validate mais concisa
+ *  - unica free?;
  * */
 
 int	main(int argc, char **argv)
@@ -29,9 +28,13 @@ int	main(int argc, char **argv)
 	char		**params;
 	int			i;
 	t_stack		*a;
+	t_stack		*b;
 
 	a = (t_stack *) malloc(sizeof(t_stack));
 	if (a == NULL)
+		return (FAILURE);
+	b = (t_stack *) malloc(sizeof(t_stack));
+	if (b == NULL)
 		return (FAILURE);
 	i = 0;
 	if (argc > 1)
@@ -40,14 +43,19 @@ int	main(int argc, char **argv)
 		params = ft_split(args, ' ');
 		if (validate(params))
 		{
-			init_stack(a);
+			init_stack(a, 'a');
+			init_stack(b, 'b');
 			while (i != array_size(params))
 				add_node_on_bottom(a, atol(params[i++]));
-			init_index(a);
-			show_stack(a);
 			sort_index(a);
 			show_stack(a);
+			show_stack(b);
+			p(a, b);
+			p(a, b);
+			show_stack(a);
+			show_stack(b);
 			kill_stack(a);
+			kill_stack(b);
 		}
 		else
 			ft_printf("Error!\n");
