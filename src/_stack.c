@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 20:22:39 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/03/06 03:03:15 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/06 11:41:37 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,16 @@ t_node	*least_value(t_stack *stack)
 	t_node	*least;
 
 	node = stack->head;
-	while (node->next != NULL)
+	least = node;
+	while (least->index != -1 && least->next != NULL)
 	{
-		if (node->value < node->next->value )
+		least = node;
+		node  = node->next;
+	}
+	while (node != NULL)
+	{
+		if (node->index == -1 && (node->value < least->value))
 			least = node;
-		else
-			least = node->next;
 		node = node->next;
 	}
 	return (least);
@@ -72,23 +76,17 @@ t_node	*least_value(t_stack *stack)
 
 void	sort_index(t_stack *stack)
 {
-	//lsn(stack);
-	//ft_printf("least: %i\n", least_value(stack)->value);
 	t_node	*least;
 	int		index;
-	int		i;
 
 	index = 0;
-	i = 0;
-	while (i != (stack->size))
+	while (index != (stack->size))
 	{
-
 		least = least_value(stack);
 		ft_printf("least: %i ", least->value);
 		least->index = index;
 		ft_printf("index: %i \n", least->index);
 		show_stack(stack);
 		index++;
-		i++;
 	}
 }
