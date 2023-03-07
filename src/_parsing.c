@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:49:36 by                   #+#    #+#             */
-/*   Updated: 2023/03/02 20:29:52 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/07 11:23:45 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	array_size(char **pp)
 	int	i;
 
 	i = 0;
-	while (pp[++i])
-		;
+	while (pp[i])
+		i++;
 	return (i);
 }
 
@@ -32,8 +32,7 @@ char	*serialize(char **argv)
 	joined = NULL;
 	args = 0;
 	i = 1;
-	while (argv[++args])
-		;
+	args = array_size(argv);
 	while (i != args)
 	{
 		trimmed = ft_strtrim(argv[i], " ");
@@ -50,33 +49,29 @@ char	*serialize(char **argv)
 	return (joined);
 }
 
-int	validate(char **params)
+int	validate(char **params, int i, int j)
 {
-	int	i;
-	int	j;
-
-	i = 0;
 	if (ft_strlen(params[i]) == 0)
-		return (FAILURE);
+		return (-1);
 	while (i != array_size(params))
 	{
 		if (ft_isalpha(params[i][0]) != 0)
-			return (FAILURE);
+			return (-2);
 		j = 0;
 		while (j != (int) ft_strlen(params[i]))
 		{
 			if (params[i][0] == '+' || params[i][0] == '-')
 				j++;
 			if (!ft_isdigit(params[i][j++]))
-				return (FAILURE);
+				return (-3);
 		}
 		if (atol(params[i]) > INT_MAX || atol(params[i]) < INT_MIN)
-			return (FAILURE);
+			return (-4);
 		j = i + 1;
 		while (j != array_size(params))
 		{
 			if (atol(params[i]) == atol(params[j++]))
-				return (FAILURE);
+				return (-5);
 		}
 		i++;
 	}

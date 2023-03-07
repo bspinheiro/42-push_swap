@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:00:48 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/03/06 18:23:17 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/07 11:16:29 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int		del_node_on_top(t_stack *stack);
 
 /* PARSING */
 char	*serialize(char **argv);
-int		validate(char **params);
+int		validate(char **params, int i, int j);
 int		array_size(char **pp);
 
 	/* UTILS */

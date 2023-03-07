@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:05:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/03/06 19:04:37 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/07 11:25:50 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
  * 4. Algoritimo
  * 
  * * REFACTOR:
- * 	- validacao -10 -11 ;
- *  - main mais concisa, validate mais concisa
- *  - unica free?;
+ *  - main mais concisa
+ *  - unica free?
+ *  - makefile (dsym, etc);
  * */
 
 int	main(int argc, char **argv)
@@ -41,7 +41,7 @@ int	main(int argc, char **argv)
 	{
 		args = serialize(argv);
 		params = ft_split(args, ' ');
-		if (validate(params))
+		if (validate(params, 0, 0) == SUCCESS)
 		{
 			init_stack(a, 'a');
 			init_stack(b, 'b');
