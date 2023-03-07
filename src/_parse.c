@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:49:36 by                   #+#    #+#             */
-/*   Updated: 2023/03/07 13:00:07 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/07 16:29:58 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	validate(char **params, int i, int j)
 		{
 			if (params[i][0] == '+' || params[i][0] == '-')
 				j++;
-			if (!ft_isdigit(params[i][j++]))
+			else if (!ft_isdigit(params[i][j++]))
 				return (-3);
 		}
 		if (atol(params[i]) > INT_MAX || atol(params[i]) < INT_MIN)
@@ -77,3 +77,13 @@ int	validate(char **params, int i, int j)
 	}
 	return (SUCCESS);
 }
+
+/**  VALIDATION ERRORS
+ **
+ ** (-1) Empty String
+ ** (-2) Alphanumeric
+ ** (-3) Signal and Numbers
+ ** (-4) INT MAX and INT MIN
+ ** (-5) Duplicated
+ **
+*/

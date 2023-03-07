@@ -6,11 +6,20 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 14:54:00 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/03/06 18:40:53 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/07 18:07:57 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
+
+int	show_move(char move, char stack)
+{
+	if (move == 'R')
+		ft_printf("rr%c\n", stack);
+	else
+		ft_printf("%c%c\n", move, stack);
+	return (SUCCESS);
+}
 
 int	s(t_stack *stack)
 {
@@ -26,7 +35,7 @@ int	s(t_stack *stack)
 	stack->head = mid;
 	top->next = btm;
 	mid->next = top;
-	ft_printf("s%c\n", stack->name);
+	show_move('s', stack->name);
 	return (SUCCESS);
 }
 
@@ -45,7 +54,7 @@ int	r(t_stack *stack)
 	btm->next = top;
 	top->next = NULL;
 	stack->tail = top;
-	ft_printf("r%c\n", stack->name);
+	show_move('r', stack->name);
 	return (SUCCESS);
 }
 
@@ -68,7 +77,7 @@ int	rr(t_stack *stack)
 	btm->next = top;
 	stack->tail = pen;
 	pen->next = NULL;
-	ft_printf("rr%c\n", stack->name);
+	show_move('R', stack->name);
 	return (SUCCESS);
 }
 
@@ -85,6 +94,6 @@ int	p(t_stack *send, t_stack *recv)
 	index = node->index;
 	add_node_on_top(recv, value, index);
 	del_node_on_top(send);
-	ft_printf("p%c\n", recv->name);
+	show_move('p', recv->name);
 	return (SUCCESS);
 }

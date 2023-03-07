@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:05:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/03/07 13:18:29 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/07 18:22:16 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,23 @@
 
 /* TODO
  * 3. Criação dos Movimentos
- * - Movimentos duplos
+ * - Movimentos duplos(ss, rr, rrr) 
  * 4. Algoritimo
  * - 3
  * - 5
  *
  * 
  * * REFACTOR:
- *  - main mais concisa
+ *  -  
  *  - unica free?
  *  - makefile (dsym, etc);
  * */
+
+void	show(t_stack *a, t_stack *b)
+{
+	show_stack(a);
+	show_stack(b);
+}
 
 int	push_swap(char **params)
 {
@@ -41,7 +47,8 @@ int	push_swap(char **params)
 	init_stack(b, 'b');
 	mount_stack(a, params);
 	sort_index(a);
-	show_stack(a);
+	show(a, b);
+	show(a, b);
 	collapse_stacks(a, b);
 	return (SUCCESS);
 }
@@ -58,7 +65,7 @@ int	main(int argc, char **argv)
 		if (validate(params, 0, 0) == SUCCESS)
 			push_swap(params);
 		else
-			ft_printf("Error!\n");
+			ft_putstr_fd("Error!", 2);
 		free1d(args);
 		free2d(params);
 	}

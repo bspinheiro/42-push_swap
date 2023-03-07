@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 20:22:39 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/03/07 13:02:32 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/07 17:39:42 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ void	show_stack(t_stack *stack)
 	t_node	*current;
 
 	current = stack->head;
-	ft_printf ("-%i-\n", stack->size);
+	ft_printf ("\n(%i)\n", stack->size);
 	while (current != NULL)
 	{
 		ft_printf("%i", current->value);
 		ft_printf("[%i]\n", current->index);
 		current = current->next;
 	}
-	ft_printf("-----\n  %c \n\n", ft_toupper(stack->name));
+	ft_printf("-----\n  %c \n", ft_toupper(stack->name));
 }
 
 void	kill_stack(t_stack *stack)
