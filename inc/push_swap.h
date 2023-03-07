@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:00:48 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/03/07 11:16:29 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/07 13:07:25 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ typedef struct s_stack{
 	char			name;
 }	t_stack;
 
-/* MOVES  */
+/* MOVES */
 int		s(t_stack *stack);
 int		r(t_stack *stack);
 int		rr(t_stack *stack);
 int		p(t_stack *send, t_stack *recv);
 
-	/* INDEX  */
+/* INDEX */
 void	init_index(t_stack *stack);
 void	sort_index(t_stack *stack);
 t_node	*least_value(t_stack *stack);
@@ -50,18 +50,20 @@ t_node	*least_value(t_stack *stack);
 void	init_stack(t_stack *stack, char c);
 void	show_stack(t_stack *stack);
 void	kill_stack(t_stack *stack);
+int		mount_stack(t_stack *a, char **params);
+int		collapse_stacks(t_stack *a, t_stack *b);
 
-/* NODE */
+/* NODES */
 int		add_node_on_top(t_stack *stack, int value, int index);
 int		add_node_on_bottom(t_stack *stack, int value);
 int		del_node_on_top(t_stack *stack);
 
-/* PARSING */
+/* PARSE */
 char	*serialize(char **argv);
 int		validate(char **params, int i, int j);
 int		array_size(char **pp);
 
-	/* UTILS */
+/* UTILS */
 char	*ft_strjoinfree(char *s1, char *s2);
 char	**free1d(char *ptr);
 char	**free2d(char **pp);
