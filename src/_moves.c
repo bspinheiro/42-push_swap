@@ -6,18 +6,19 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 14:54:00 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/03/07 18:07:57 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/08 02:24:44 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-int	show_move(char move, char stack)
+int	show_move(char move, char s)
 {
 	if (move == 'R')
-		ft_printf("rr%c\n", stack);
+		ft_printf("rr");
 	else
-		ft_printf("%c%c\n", move, stack);
+		ft_printf("%c", move);
+	ft_printf("%c\n", s);
 	return (SUCCESS);
 }
 

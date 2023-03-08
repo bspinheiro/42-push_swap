@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 18:26:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 00:15:07 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/08 02:44:19 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,53 +61,63 @@ int	guess(t_stack *stack)
 
 int	low_id(t_stack *stack)
 {
-	t_node	*node;
-	int		min_index;
+	int	node1;
+	int	node2;
+	int	node3;
+	int	tmp;
+	int	min;
 
-	node = stack->head;
-	min_index = node->index;
-	while (node->next != NULL)
-	{
-		if (node->index > node->next->index)
-			min_index = node->next->index;
-		node = node->next;
-	}
-	return (min_index);
+	node1 = stack->head->index;
+	node2 = stack->head->next->index;
+	node3 = stack->tail->index;
+	if (node1 < node2)
+		tmp = node1;
+	else
+		tmp = node2;
+	if (tmp < node3)
+		min = tmp;
+	else
+		min = node3;
+	return (min);
+
 }
 
 int	top_id(t_stack *stack)
 {
-	t_node	*node;
-	int		high;
-	int		temp;
+	int	node1;
+	int	node2;
+	int	node3;
+	int	tmp;
+	int	max;
 
-	node = stack->head;
-	high = node->index;
-	while (node->next != NULL)
-	{
-		ft_printf("h: %i\n", high);
-		if (node->index < node->next->index)
-			high = node->next->index;
-		node = node->next;
-	}
-	ft_printf("h: %i\n", high);
-	return (high);
+	node1 = stack->head->index;
+	node2 = stack->head->next->index;
+	node3 = stack->tail->index;
+	if (node1 < node2)
+		tmp = node2;
+	else
+		tmp = node1;
+	if (tmp < node3)
+		max = node3;
+	else
+		max = tmp;
+	return (max);
 }
 
 int	mid_id(t_stack *stack)
 {
 	t_node	*node;
-	int		middle_index;
+	int		mid;
 
 	node = stack->head;
-	while (node->next != NULL)
+	while (node != NULL)
 	{
 		if ((node->index != low_id(stack))
-			|| (node->index != top_id(stack)))
-			middle_index = node->index;
+			&& (node->index != top_id(stack)))
+			mid = node->index;
 		node = node->next;
 	}
-	return (middle_index);
+	return (mid);
 }
 
 int	sort_3(t_stack *stack)
@@ -123,10 +133,6 @@ int	sort_3(t_stack *stack)
 	center = stack->head->next->index;
 	top = top_id(stack);
 	mid = mid_id(stack);
-	show_stack(stack);
-//	ft_printf("lower: %i\n", lower_index(stack));
-//	ft_printf("higher: %i\n", higher_index(stack));
-//	ft_printf("middle: %i\n", middle_index(stack));
 	if (is_sorted(stack) == SUCCESS)
 		return (SUCCESS);
 	if (head == mid && center < tail)
@@ -154,12 +160,13 @@ int	sort_4(t_stack *a, t_stack *b)
 
 	//show_stack(a);
 	node = a->head;
-	while (a->head->index != 0)
+	while (node != NULL && node->index != 0)
 	{
 		if (guess(a) > 1)
 			r(a);
 		else
 			rr(a);
+		node = node->next;
 	//	show_stack(a);
 	}
 	p(a, b);
