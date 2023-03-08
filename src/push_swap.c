@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:05:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/03/07 18:22:16 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/07 20:02:41 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ int	push_swap(char **params)
 	init_stack(b, 'b');
 	mount_stack(a, params);
 	sort_index(a);
-	show(a, b);
-	show(a, b);
+	sort(a, b);
 	collapse_stacks(a, b);
 	return (SUCCESS);
 }

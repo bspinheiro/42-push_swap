@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:00:48 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/03/07 13:07:25 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/07 18:56:01 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ typedef struct s_stack{
 	int				size;
 	char			name;
 }	t_stack;
+
+/* SORT */
+int		sort(t_stack *a, t_stack *b);
 
 /* MOVES */
 int		s(t_stack *stack);
@@ -65,7 +68,7 @@ int		array_size(char **pp);
 
 /* UTILS */
 char	*ft_strjoinfree(char *s1, char *s2);
-char	**free1d(char *ptr);
+char	**free1d(char *p);
 char	**free2d(char **pp);
 int		ft_wordcount(char const *s, char c);
 int		ft_atol(const char *str);
