@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 13:21:04 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/03/06 18:19:30 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/14 00:34:32 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,3 +59,21 @@ void	sort_index(t_stack *stack)
 		index++;
 	}
 }
+
+int	is_sorted(t_stack *stack)
+{
+	t_node	*node;
+	int		i;
+
+	node = stack->head;
+	i = 0;
+	while (node != NULL)
+	{
+		if (i != node->index)
+			return (FAILURE);
+		i++;
+		node = node->next;
+	}
+	return (SUCCESS);
+}
+

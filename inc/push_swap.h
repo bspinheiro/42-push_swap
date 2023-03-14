@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:00:48 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/03/07 18:56:01 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/14 01:07:53 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,19 @@ typedef struct s_stack{
 
 /* SORT */
 int		sort(t_stack *a, t_stack *b);
+int		sort_3(t_stack *stack);
+int		sort_4(t_stack *a, t_stack *b);
+int		sort_5(t_stack *a, t_stack *b);
+
+/* PIVOT */
+int	rotate_direction(t_stack *stack);
+int	rotate_min_to_top(t_stack *a);
+
+/* QUEST */
+int	find_id(int index, t_stack *stack);
+int	min_id(t_stack *stack);
+int	mid_id(t_stack *stack);
+int	max_id(t_stack *stack);
 
 /* MOVES */
 int		s(t_stack *stack);
@@ -47,6 +60,7 @@ int		p(t_stack *send, t_stack *recv);
 /* INDEX */
 void	init_index(t_stack *stack);
 void	sort_index(t_stack *stack);
+int		is_sorted(t_stack *stack);
 t_node	*least_value(t_stack *stack);
 
 /* STACK */
