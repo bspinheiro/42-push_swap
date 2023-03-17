@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:00:48 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/03/14 01:07:53 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/16 16:38:31 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int		sort(t_stack *a, t_stack *b);
 int		sort_3(t_stack *stack);
 int		sort_4(t_stack *a, t_stack *b);
 int		sort_5(t_stack *a, t_stack *b);
+//int		radix(t_stack *a, t_stack *b);
 
 /* PIVOT */
 int	rotate_direction(t_stack *stack);
