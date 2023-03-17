@@ -6,25 +6,11 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:05:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/03/07 20:02:41 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/17 16:59:35 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
-
-/* TODO
- * 3. Criação dos Movimentos
- * - Movimentos duplos(ss, rr, rrr) 
- * 4. Algoritimo
- * - 3
- * - 5
- *
- * 
- * * REFACTOR:
- *  -  
- *  - unica free?
- *  - makefile (dsym, etc);
- * */
 
 void	show(t_stack *a, t_stack *b)
 {
@@ -64,7 +50,7 @@ int	main(int argc, char **argv)
 		if (validate(params, 0, 0) == SUCCESS)
 			push_swap(params);
 		else
-			ft_putstr_fd("Error!", 2);
+			ft_putstr_fd("Error!\n", 2);
 		free1d(args);
 		free2d(params);
 	}

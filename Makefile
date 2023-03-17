@@ -6,7 +6,7 @@
 #    By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/10 18:24:14 by bda-silv          #+#    #+#              #
-#*   Updated: 2023/03/17 16:42:07 by                  ###   ########.fr       *#
+#*   Updated: 2023/03/17 17:19:02 by                  ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,8 +42,8 @@ VERBOSE   := 1
 CC        := cc
 CLIB      := ar -rc
 
-CFLAGS    := -Wall -Wextra -Werror
-DFLAGS    :=
+CFLAGS    := -Wall -Wextra -Werror -g
+DFLAGS    := -g
 OFLAGS    := -O3
 FSANITIZE := -fsanitize=address
 
