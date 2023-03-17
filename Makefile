@@ -6,7 +6,7 @@
 #    By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/10 18:24:14 by bda-silv          #+#    #+#              #
-#*   Updated: 2023/03/06 02:38:52 by                  ###   ########.fr       *#
+#*   Updated: 2023/03/17 16:42:07 by                  ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,10 @@ NAMES     := ${PROJ}
 #                          Config and Folders
 # **************************************************************************** #
 
-SRC_ROOT  := src/
-INC_ROOT  := inc/
-LIB_ROOT  := lib/
-OBJ_ROOT  := obj/
+SRC_ROOT  := ./src/
+INC_ROOT  := ./inc/
+LIB_ROOT  := ./lib/
+OBJ_ROOT  := ./obj/
 BIN_ROOT  := ./
 
 VERBOSE   := 1
@@ -42,8 +42,8 @@ VERBOSE   := 1
 CC        := cc
 CLIB      := ar -rc
 
-CFLAGS    := -Wall -Wextra -Werror -g
-DFLAGS    := -g
+CFLAGS    := -Wall -Wextra -Werror
+DFLAGS    :=
 OFLAGS    := -O3
 FSANITIZE := -fsanitize=address
 
@@ -64,10 +64,12 @@ INC_DIRS = ${INC_ROOT}
 # **************************************************************************** #
 
 SRCS_LIST = $(foreach dl,${SRC_DIRS_LIST},$(subst ${SPACE},:,$(strip $(foreach\
-	dir,$(subst :,${SPACE},${dl}),$(wildcard ${dir}*.c)))))
+	dir,$(subst :,${SPACE},${dl}),$(addprefix $(SRC_ROOT), $(shell ls ${dir}| \
+	   grep -E ".+\.c"))))))
 OBJS_LIST = $(subst ${SRC_ROOT},${OBJ_ROOT},$(subst .c,.o,${SRCS_LIST}))
 
-SRCS = $(foreach dir,${SRC_DIRS},$(wildcard ${dir}*.c))
+SRCS = $(foreach dir,${SRC_DIRS},$(addprefix $(SRC_ROOT), $(shell ls ${dir} | \
+	   grep -E ".+\.c")))
 OBJS = $(subst ${SRC_ROOT},${OBJ_ROOT},${SRCS:.c=.o})
 
 INCS := ${addprefix -I,${INC_DIRS}}
@@ -127,7 +129,6 @@ all: ${NAMES}
 
 ${PROJ}: ${OBJS}
 	${AT} ${MAKE} -C ${LIB_ROOT}libft ${BLOCK}
-	#${AT} ${MAKE} -C ${LIB_ROOT}${MLX} ${BLOCK}
 	${AT} ${CC} ${CFLAGS} ${OFLAGS} ${INCS}  ${OBJS}  \
 		${LIB_ROOT}libft/libft.a -o $@ ${BLOCK}
 	${AT}echo "${_OK}$(grn)${@F}$(rst)" ${BLOCK}
@@ -140,14 +141,11 @@ clean:
 	${AT}mkdir -p ${OBJ_ROOT} ${BLOCK}
 	${AT}rm -rf  ${OBJ_ROOT}  ${BLOCK}
 	${AT} ${MAKE} clean -C ${LIB_ROOT}libft ${BLOCK}
-#	${AT} ${MAKE} clean -C ${LIB_ROOT}${MLX} ${BLOCK}
-#	${AT}rm -f libmlx.dylib ${BLOCK}
 	${AT}echo "$(_KO)$(red)${OBJ_ROOT}$(rst)" ${BLOCK}
 
 .PHONY: fclean
 fclean: clean
 	${AT} ${MAKE} fclean -C ${LIB_ROOT}libft ${BLOCK}
-#	${AT} ${MAKE} fclean -C ${LIB_ROOT}${MLX} ${BLOCK}
 	${AT}rm -rf ${NAMES} ${BLOCK}
 	${AT}echo "$(_KO)$(red)${NAMES}$(rst)" ${BLOCK}
 
@@ -162,9 +160,6 @@ debug: CFLAGS += ${DFLAGS} ${FSANITIZE}
 debug:
 	@echo "$(pnk)"
 	lldb $(RUN_ARGS)
-
-help:
-
 
 run : all
 	@echo "$(grn)$(ok)	Running			$(RUN_ARGS)$(rst)\n"

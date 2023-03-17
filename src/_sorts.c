@@ -6,33 +6,34 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 18:26:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/03/17 03:13:15 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/17 14:16:20 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-int	sort_3(t_stack *stack){
-	int	head;
+int	sort_3(t_stack *stack)
+{
 	int	tail;
-	int center;
+	int	center;
 
-	head = stack->head->index;
 	tail = stack->tail->index;
 	center = stack->head->next->index;
-	if ((head < center) && (center < tail))
+	if ((stack->head->index < center) && (center < tail))
 		return (SUCCESS);
-	if (head == mid_id(stack) && center < tail)
+	if (stack->head->index == mid_id(stack) && center < tail)
 		s(stack);
-	else if (head == mid_id(stack) && center > tail)
+	else if (stack->head->index == mid_id(stack) && center > tail)
 		rr(stack);
-	else if (head == max_id(stack) && center < tail)
+	else if (stack->head->index == max_id(stack) && center < tail)
 		r(stack);
-	else if (head == max_id(stack) && center > tail){
+	else if (stack->head->index == max_id(stack) && center > tail)
+	{
 		s(stack);
 		rr(stack);
 	}
-	else if (head == min_id(stack) && center > tail){
+	else if (stack->head->index == min_id(stack) && center > tail)
+	{
 		s(stack);
 		r(stack);
 	}
@@ -44,7 +45,8 @@ int	sort_4(t_stack *a, t_stack *b)
 	if (is_sorted(a) == SUCCESS)
 		return (SUCCESS);
 	rotate_min_to_top(a);
-	if (!is_sorted(a)){
+	if (!is_sorted(a))
+	{
 		p(a, b);
 		sort_3(a);
 		p(b, a);
@@ -65,56 +67,6 @@ int	sort_5(t_stack *a, t_stack *b)
 		sort_3(a);
 		p(b, a);
 		p(b, a);
-	}
-	return (SUCCESS);
-}
-
-int	get_max_bits(t_stack *stack)
-{
-	int	count;
-	int	n;
-
-	n = max_id(stack);
-	count = 0;
-	while (n != 0)
-	{
-		n /= 10;
-		count++;
-	}
-	return ((count * 8));
-}
-
-void to_b(t_stack *a, t_stack *b, int bit)
-{
-	t_node *node;
-	node = a->head;
-	if (((node->index >> bit) & 1) == 1)
-		r(a);
-	else
-		p(a, b);
-}
-
-int radix(t_stack *a, t_stack *b)
-{
-	int	i;
-	int	size;
-	int	count;
-
-	i = 0;
-	while (i < get_max_bits(a))
-	{
-		count = 0;
-		size = a-> size;
-		while (count < size && size != 0)
-		{
-			to_b(a, b, i);
-			count++;
-		}
-		while (b->size != 0)
-			p(b, a);
-		i++;
-		if (is_sorted(a) == SUCCESS && b->size == 0)
-			break;
 	}
 	return (SUCCESS);
 }
