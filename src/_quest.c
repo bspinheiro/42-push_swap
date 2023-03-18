@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 00:06:28 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/03/17 14:03:20 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/18 20:26:38 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	mid_id(t_stack *stack)
 	t_node	*node;
 	int		mid;
 
+	mid = 0;
 	node = stack->head;
 	if (stack->size != 3)
 		return (min_id(stack));
