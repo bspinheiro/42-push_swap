@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:00:48 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/03/17 14:17:25 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/18 20:00:22 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,16 @@ int		add_node_on_top(t_stack *stack, int value, int index);
 int		add_node_on_bottom(t_stack *stack, int value);
 int		del_node_on_top(t_stack *stack);
 
+/* VALIDATION */
+int		empty_check(char **params, int i, int j);
+int		alpha_check(char **params, int i, int j);
+int		digit_check(char **params, int i, int j);
+int		equal_check(char **params, int i, int j);
+
 /* PARSE */
 char	*serialize(char **argv);
 int		validate(char **params, int i, int j);
+int		validation(char **params);
 int		array_size(char **pp);
 
 /* UTILS */

@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:05:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/03/17 16:59:35 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/18 19:44:56 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,24 @@ int	main(int argc, char **argv)
 {
 	char		*args;
 	char		**params;
+	int			error;
 
+	error = 0;
 	if (argc > 1)
 	{
 		args = serialize(argv);
 		params = ft_split(args, ' ');
-		if (validate(params, 0, 0) == SUCCESS)
+		if (validation(params) == SUCCESS)
 			push_swap(params);
 		else
+		{
+			error = validation(params) * (-1);
 			ft_putstr_fd("Error!\n", 2);
+		}
 		free1d(args);
 		free2d(params);
 	}
 	else
 		ft_printf("\n");
-	return (0);
+	return (error);
 }
