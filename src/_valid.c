@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 19:55:11 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/03/18 20:45:44 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/18 23:27:18 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,12 @@
 int	empty_check(char **params, int i, int j)
 {
 	(void) j;
-	if (ft_strlen(params[i]) == 0)
-		return (-1);
+	while (i != array_size(params))
+	{
+		if (ft_strlen(params[i]) == 0)
+			return (-1);
+		i++;
+	}
 	return (SUCCESS);
 }
 

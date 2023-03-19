@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:00:48 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/03/18 20:00:22 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/18 23:16:04 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,14 @@
 
 # define SUCCESS	(1)
 # define FAILURE	(0)
-# define INT_MAX	(2147483647)
-# define INT_MIN	(-2147483648)
+
+# ifndef INT_MAX
+#  define INT_MAX	(2147483647)
+# endif
+
+# ifndef INT_MIN
+#  define INT_MIN	(-2147483648)
+# endif
 
 typedef struct s_node
 {
