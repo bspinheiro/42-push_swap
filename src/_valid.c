@@ -6,7 +6,7 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 19:55:11 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/03/18 19:56:22 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/18 20:45:44 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int	digit_check(char **params, int i, int j)
 		j = 0;
 		while (j != (int) ft_strlen(params[i]))
 		{
-			if (params[i][0] == '+' || params[i][0] == '-')
+			if ((params[i][0] == '+' || params[i][0] == '-')
+					&& ft_isdigit(params[i][1]))
 				j++;
 			while (ft_isdigit(params[i][j]))
 				j++;
