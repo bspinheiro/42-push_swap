@@ -6,17 +6,11 @@
 /*   By: bda-silv <bda-silv@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:05:16 by bda-silv          #+#    #+#             */
-/*   Updated: 2023/03/18 19:44:56 by bda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/20 12:25:17 by bda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
-
-void	show(t_stack *a, t_stack *b)
-{
-	show_stack(a);
-	show_stack(b);
-}
 
 int	push_swap(char **params)
 {
@@ -44,12 +38,12 @@ int	main(int argc, char **argv)
 	char		**params;
 	int			error;
 
-	error = 0;
+	error = empty_check(argv, 0, argc);
 	if (argc > 1)
 	{
 		args = serialize(argv);
 		params = ft_split(args, ' ');
-		if (validation(params) == SUCCESS)
+		if (validation(params) == SUCCESS && error == SUCCESS)
 			push_swap(params);
 		else
 		{
